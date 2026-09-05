@@ -14,10 +14,13 @@ def save_image(image: np.ndarray, path: str) -> None:
     if not success:
         raise ValueError("Failed to save the image.")
 
-def display_image(image: np.ndarray, window_name: str = "Image") -> None:
+def display_image(image) -> None:
     if image is None:
         raise ValueError("Image cannot be None.")
-    cv2.imshow(window_name,image)
-    cv2.waitKey(0)
+    cv2.imshow("Image", image)
+    while True:
+        key = cv2.waitKey(1) & 0xFF
+        if key == 27:  # ESC
+            break
     cv2.destroyAllWindows()
 

@@ -48,7 +48,7 @@ def bilateral_blur_image(image:np.ndarray,diameter:int,sigma_color:float,sigma_s
         raise ValueError("sigma_color must be a positive.")
     if sigma_space <=0:
         raise ValueError("sigma_space must be positive.")
-    blurred = cv2.bilateralFilter(image,diameter,sigma_space,sigma_space)
+    blurred = cv2.bilateralFilter(image,diameter,sigma_color,sigma_space)
     return blurred
 
 def custom_convolution(image: np.ndarray,kernel: np.ndarray)->np.ndarray:

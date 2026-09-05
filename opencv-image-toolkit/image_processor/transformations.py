@@ -73,7 +73,7 @@ def scale_image(image:np.ndarray,tx :float ,ty:float)->np.ndarray:
         raise ValueError("Scale factors must be positive.")
     height , width = image.shape[:2]
     new_height = int(height * ty)
-    new_width = int(width * ty)
+    new_width = int(width * tx)
     scaled= cv2.resize(image ,(new_width,new_height))
     return scaled
 
