@@ -319,6 +319,7 @@ tests/
 # 🚧 Current Status
 
 ### Category 1 — Image I/O & Information
+### Category 2 — Image Transformation
 
 **COMPLETED ✅**
 
