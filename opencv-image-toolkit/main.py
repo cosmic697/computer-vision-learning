@@ -8,6 +8,7 @@ from image_processor import (
     blur_image,
     threshold_image,
     detect_edges,
+    median_blur_image,
 )
 
 
@@ -33,5 +34,8 @@ save_image(thresholded, "examples/output/thresholded.jpg")
 
 edges = detect_edges(gray)
 save_image(edges, "examples/output/edges.jpg")
+
+median_blurred = median_blur_image(image, 5)
+save_image(median_blurred, "examples/output/median_blurred.jpg")
 
 print("Image processing completed successfully.")

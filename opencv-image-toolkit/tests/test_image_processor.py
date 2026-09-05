@@ -12,6 +12,7 @@ from image_processor import (
     blur_image,
     threshold_image,
     detect_edges,
+    median_blur_image,
 )
 
 INPUT_IMAGE = "examples/input/test.jpg"
@@ -155,6 +156,24 @@ class TestImageProcessor(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             detect_edges(gray, 100, 256)
+
+    def test_median_blur_image(self):
+        blurred = median_blur_image(self.image, 5)
+        self.assertEqual(blurred.shape, self.image.shape)
+
+    def test_median_blur_none(self):
+        with self.assertRaises(ValueError):
+            median_blur_image(None, 5)
+
+    def test_median_blur_invalid_kernel(self):
+        with self.assertRaises(ValueError):
+            median_blur_image(self.image, 0)
+        with self.assertRaises(ValueError):
+            median_blur_image(self.image, 4)
+        with self.assertRaises(ValueError):
+            median_blur_image(self.image, -3)
+        with self.assertRaises(TypeError):
+            median_blur_image(self.image, "5")
 
 if __name__ == "__main__":
     unittest.main()

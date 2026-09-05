@@ -77,6 +77,14 @@ def detect_edges(image:np.ndarray, lower_threshold:int=100,upper_threshold:int=2
     edge = cv2.Canny(image,lower_threshold,upper_threshold)
     return edge
 
+def median_blur_image(image :np.ndarray,kernel_size :int )->np.ndarray:
+    if image is None:
+        raise ValueError("Image cannot be None.")
+    if kernel_size <= 0 or kernel_size % 2 == 0:
+        raise ValueError("Kernel size must be a positive odd number.")
+    blurred = cv2.medianBlur(image, kernel_size)
+    return blurred
+
     
 
     
