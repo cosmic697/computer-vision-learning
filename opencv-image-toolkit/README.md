@@ -45,11 +45,11 @@ The goal is to complete each category before moving to the next one.
 - [x] Get height
 - [x] Get number of channels
 - [x] Get image data type
-- [ ] Get pixel value
-- [ ] Get image statistics
-- [ ] Check whether image is grayscale
-- [ ] Check whether image is color
-- [ ] Support different image formats
+- [x] Get pixel value
+- [x] Get image statistics
+- [x] Check whether image is grayscale
+- [x] Check whether image is color
+- [x] Support different image formats
 
 ---
 
@@ -313,3 +313,17 @@ tests/
 ├── test_filtering.py
 ├── test_thresholding.py
 └── test_edges.py
+
+
+# 🚧 Current Status
+
+### Category 1 — Image I/O & Information
+
+**COMPLETED ✅**
+
+All planned features for this category have been implemented and tested.
+
+### Test Status
+
+```text
+All tests passing ✅

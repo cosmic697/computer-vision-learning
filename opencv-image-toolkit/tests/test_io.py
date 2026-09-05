@@ -47,6 +47,20 @@ class TestIO(unittest.TestCase):
         with self.assertRaises(ValueError):
             save_image(None, TEST_OUTPUT)
 
+    def test_save_different_formats(self):
+        formats = [".jpg",".png",".bmp",".tiff",]
+
+        for extension in formats:
+            output_path = ("examples/output/test_format"+ extension)
+            try:
+                save_image(self.image,output_path)
+                self.assertTrue(os.path.exists(output_path))
+                saved_image = cv2.imread(output_path)
+                self.assertIsNotNone(saved_image)
+            finally:
+                if os.path.exists(output_path):
+                    os.remove(output_path)
+
     
 if __name__ == "__main__":
     unittest.main()
