@@ -1,4 +1,4 @@
-# OpenCV Image Processing Toolkit
+# OpenCV Image Toolkit
 
 A beginner-friendly Python project for learning the fundamentals of image processing and computer vision using OpenCV.
 
@@ -8,20 +8,19 @@ The goal of this project is not just to use OpenCV functions, but to understand 
 
 ## Features
 
-The toolkit will progressively support:
+The toolkit currently supports:
 
-* Read and save images
-* Display images
+* Read images
+* Save images
 * Convert images to grayscale
 * Resize images
 * Crop images
 * Rotate images
-* Apply image blurring
-* Apply thresholding
-* Detect edges
-* Compare original and processed images
+* Apply Gaussian blur
+* Apply binary thresholding
+* Detect edges using Canny
 
-More operations may be added as the project develops.
+More operations will be added as the project develops.
 
 ---
 
@@ -45,7 +44,11 @@ opencv-image-toolkit/
 │
 ├── examples/
 │   ├── input/
+│   │   └── test.jpg
 │   └── output/
+│
+├── tests/
+│   └── test_image_processor.py
 │
 └── .gitignore
 ```
@@ -57,7 +60,7 @@ opencv-image-toolkit/
 Clone the repository:
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/cosmic697/computer-vision-learning.git
 cd opencv-image-toolkit
 ```
 
@@ -89,15 +92,58 @@ pip install -r requirements.txt
 
 The project is currently under development.
 
-The toolkit will eventually provide a simple way to apply different image-processing operations from the command line.
-
-Example:
+The current demo can be run with:
 
 ```bash
-python main.py --image examples/input/image.jpg --operation grayscale
+python3 main.py
 ```
 
-Additional operations will be added as development continues.
+The demo reads an image from:
+
+```text
+examples/input/
+```
+
+and saves the processed images to:
+
+```text
+examples/output/
+```
+
+The current demo applies several image-processing operations including:
+
+* Grayscale conversion
+* Resizing
+* Cropping
+* Rotation
+* Gaussian blur
+* Thresholding
+* Canny edge detection
+
+A command-line interface will be added in a future version.
+
+---
+
+## Testing
+
+The project uses Python's built-in `unittest` framework.
+
+Run the test suite with:
+
+```bash
+python3 -m unittest tests/test_image_processor.py
+```
+
+The current test suite contains **23 tests** covering:
+
+* Normal image-processing operations
+* Invalid inputs
+* Error handling
+* Image dimensions
+* Output validation
+* Threshold values
+* Kernel size validation
+* Edge detection thresholds
 
 ---
 
@@ -108,35 +154,12 @@ This project is being developed as a practical introduction to computer vision.
 The main learning goals are:
 
 1. Understand how digital images are represented as numerical arrays.
-2. Learn the basic OpenCV image-processing API.
+2. Learn how OpenCV works with images.
 3. Understand common image-processing operations.
 4. Practice working with images using Python and NumPy.
 5. Learn how individual computer vision operations can be combined into processing pipelines.
-6. Develop the habit of implementing and testing concepts rather than simply copying library functions.
-
----
-
-## Development Approach
-
-This project is primarily a learning project.
-
-For each feature, the goal is to:
-
-```text
-Understand the concept
-        ↓
-Learn the algorithm
-        ↓
-Implement it using OpenCV
-        ↓
-Experiment with different inputs
-        ↓
-Test the result
-        ↓
-Document what was learned
-```
-
-As my understanding of computer vision improves, some operations may also be implemented manually to better understand the underlying algorithms.
+6. Practice writing tests for image-processing functions.
+7. Develop the habit of understanding and experimenting with concepts instead of simply copying library functions.
 
 ---
 
@@ -144,20 +167,20 @@ As my understanding of computer vision improves, some operations may also be imp
 
 ### Basic Operations
 
-* [ ] Read image
+* [x] Read image
 * [ ] Display image
-* [ ] Save image
+* [x] Save image
 * [ ] Get image dimensions
-* [ ] Convert to grayscale
-* [ ] Resize
-* [ ] Crop
-* [ ] Rotate
+* [x] Convert to grayscale
+* [x] Resize
+* [x] Crop
+* [x] Rotate
 
 ### Image Processing
 
-* [ ] Gaussian blur
+* [x] Gaussian blur
 * [ ] Median blur
-* [ ] Thresholding
+* [x] Thresholding
 * [ ] Adaptive thresholding
 * [ ] Image sharpening
 * [ ] Morphological operations
@@ -165,7 +188,7 @@ As my understanding of computer vision improves, some operations may also be imp
 ### Edge & Feature Processing
 
 * [ ] Sobel edge detection
-* [ ] Canny edge detection
+* [x] Canny edge detection
 * [ ] Contour detection
 * [ ] Basic feature detection
 
@@ -173,8 +196,8 @@ As my understanding of computer vision improves, some operations may also be imp
 
 * [ ] Command-line interface
 * [ ] Better error handling
-* [ ] Input validation
-* [ ] Automated tests
+* [ ] More input validation
+* [ ] More automated tests
 * [ ] Example images and results
 * [ ] Performance improvements
 
@@ -184,7 +207,7 @@ As my understanding of computer vision improves, some operations may also be imp
 
 This section will be updated throughout development.
 
-Topics currently being studied:
+Topics currently studied:
 
 * Digital image representation
 * Image dimensions and channels
@@ -192,8 +215,11 @@ Topics currently being studied:
 * OpenCV image I/O
 * Image transformations
 * Image filtering
+* Gaussian blur
 * Thresholding
-* Edge detection
+* Canny edge detection
+* Basic input validation
+* Unit testing with `unittest`
 
 ---
 
@@ -201,10 +227,7 @@ Topics currently being studied:
 
 **In Development**
 
-This project is being built incrementally as part of my journey into computer vision.
+This project is being built incrementally as part of my computer vision learning journey.
 
----
+The current focus is on understanding basic image processing, writing reusable functions, and testing them properly before moving on to more advanced computer vision techniques.
 
-## License
-
-This project is licensed under the MIT License.
