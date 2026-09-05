@@ -59,14 +59,15 @@ The goal is to complete each category before moving to the next one.
 - [x] Resize image
 - [x] Crop image
 - [x] Rotate image
-- [ ] Flip image horizontally
-- [ ] Flip image vertically
-- [ ] Translate image
-- [ ] Scale image
-- [ ] Shear image
-- [ ] Affine transformation
-- [ ] Perspective transformation
-- [ ] Add image padding/borders
+- [x] Flip image horizontally
+- [x] Flip image vertically
+- [x] Flip both
+- [x] Translate image
+- [x] Scale image
+- [x] Shear image
+- [x] Affine transformation
+- [x] Perspective transformation
+- [x] Add image padding/borders
 
 ---
 
