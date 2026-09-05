@@ -1,233 +1,315 @@
 # OpenCV Image Toolkit
 
-A beginner-friendly Python project for learning the fundamentals of image processing and computer vision using OpenCV.
+A beginner-friendly Python project for learning **Computer Vision and Image Processing using OpenCV**.
 
-The goal of this project is not just to use OpenCV functions, but to understand how common image-processing operations work and how they can be combined to build simple computer vision pipelines.
-
----
-
-## Features
-
-The toolkit currently supports:
-
-* Read images
-* Save images
-* Convert images to grayscale
-* Resize images
-* Crop images
-* Rotate images
-* Apply Gaussian blur
-* Apply binary thresholding
-* Detect edges using Canny
-
-More operations will be added as the project develops.
+The goal of this project is not just to use OpenCV functions, but to understand how common computer vision operations work, how they are implemented, and how they can be combined into useful image-processing pipelines.
 
 ---
 
-## Technologies
+## 🎯 Goals
 
-* Python
-* OpenCV
-* NumPy
+This project is part of my Computer Vision learning journey.
+
+The main goals are:
+
+- Learn OpenCV through implementation
+- Understand image-processing concepts
+- Practice NumPy with real computer vision data
+- Learn how images are represented and manipulated
+- Build reusable image-processing functions
+- Write tests for computer vision operations
+- Gradually build more advanced computer vision systems
 
 ---
 
-## Project Structure
+# 📚 Feature Roadmap
+
+The toolkit will be developed category by category.
+
+The goal is to complete each category before moving to the next one.
+
+---
+
+## 1. Image I/O & Information
+
+### Image I/O
+
+- [x] Load image
+- [x] Save image
+- [x] Display image
+
+### Image Information
+
+- [x] Get image dimensions
+- [x] Get width
+- [x] Get height
+- [x] Get number of channels
+- [x] Get image data type
+- [ ] Get pixel value
+- [ ] Get image statistics
+- [ ] Check whether image is grayscale
+- [ ] Check whether image is color
+- [ ] Support different image formats
+
+---
+
+## 2. Basic Image Transformations
+
+- [x] Convert image to grayscale
+- [x] Resize image
+- [x] Crop image
+- [x] Rotate image
+- [ ] Flip image horizontally
+- [ ] Flip image vertically
+- [ ] Translate image
+- [ ] Scale image
+- [ ] Shear image
+- [ ] Affine transformation
+- [ ] Perspective transformation
+- [ ] Add image padding/borders
+
+---
+
+## 3. Image Filtering
+
+- [x] Gaussian blur
+- [x] Median blur
+- [ ] Average / box blur
+- [ ] Bilateral filtering
+- [ ] Custom convolution
+- [ ] Sharpening
+- [ ] Unsharp masking
+- [ ] Noise reduction
+- [ ] Salt-and-pepper noise removal
+
+---
+
+## 4. Thresholding
+
+- [x] Binary thresholding
+- [ ] Binary inverse thresholding
+- [ ] Truncation thresholding
+- [ ] To-zero thresholding
+- [ ] Adaptive thresholding
+- [ ] Otsu thresholding
+- [ ] Automatic threshold selection
+
+---
+
+## 5. Morphological Operations
+
+- [ ] Erosion
+- [ ] Dilation
+- [ ] Opening
+- [ ] Closing
+- [ ] Morphological gradient
+- [ ] Top-hat transformation
+- [ ] Black-hat transformation
+- [ ] Structuring elements
+
+---
+
+## 6. Edge Detection
+
+- [x] Canny edge detection
+- [ ] Sobel X
+- [ ] Sobel Y
+- [ ] Sobel gradient magnitude
+- [ ] Scharr operator
+- [ ] Laplacian
+- [ ] Gradient magnitude
+- [ ] Gradient direction
+
+---
+
+## 7. Contours
+
+- [ ] Find contours
+- [ ] Draw contours
+- [ ] Contour area
+- [ ] Contour perimeter
+- [ ] Bounding rectangle
+- [ ] Rotated bounding rectangle
+- [ ] Minimum enclosing circle
+- [ ] Convex hull
+- [ ] Convexity defects
+- [ ] Polygon approximation
+- [ ] Contour hierarchy
+- [ ] Basic shape detection
+
+---
+
+## 8. Color Processing
+
+- [ ] BGR to RGB
+- [ ] BGR to HSV
+- [ ] BGR to LAB
+- [ ] BGR to YCrCb
+- [ ] Color masking
+- [ ] Color range detection
+- [ ] Histogram calculation
+- [ ] Histogram equalization
+- [ ] CLAHE
+- [ ] Brightness adjustment
+- [ ] Contrast adjustment
+- [ ] Saturation adjustment
+
+---
+
+## 9. Feature Detection & Description
+
+- [ ] Harris corner detection
+- [ ] Shi-Tomasi corner detection
+- [ ] FAST
+- [ ] ORB
+- [ ] SIFT
+- [ ] Feature descriptors
+- [ ] Feature matching
+- [ ] Brute-force matching
+- [ ] FLANN matching
+- [ ] Feature visualization
+
+---
+
+## 10. Image Segmentation
+
+- [ ] Binary segmentation
+- [ ] Color segmentation
+- [ ] Region-based segmentation
+- [ ] Connected components
+- [ ] Watershed
+- [ ] GrabCut
+- [ ] K-means image segmentation
+
+---
+
+## 11. Geometric Computer Vision
+
+- [ ] Camera calibration
+- [ ] Camera matrix
+- [ ] Distortion coefficients
+- [ ] Image distortion
+- [ ] Image undistortion
+- [ ] Homography
+- [ ] Perspective geometry
+- [ ] Epipolar geometry
+- [ ] Fundamental matrix
+- [ ] Essential matrix
+- [ ] Stereo vision
+- [ ] Depth estimation
+- [ ] Triangulation
+
+---
+
+## 12. Motion & Video Processing
+
+- [ ] Read video
+- [ ] Write video
+- [ ] Process video frame-by-frame
+- [ ] Background subtraction
+- [ ] Motion detection
+- [ ] Optical flow
+- [ ] Lucas-Kanade optical flow
+- [ ] Dense optical flow
+- [ ] Object tracking
+- [ ] Centroid tracking
+- [ ] KCF tracking
+- [ ] CSRT tracking
+
+---
+
+## 13. Object Detection
+
+- [ ] Template matching
+- [ ] Haar cascade detection
+- [ ] HOG + SVM
+- [ ] Bounding boxes
+- [ ] Confidence scores
+- [ ] Non-maximum suppression
+- [ ] YOLO integration
+
+---
+
+## 14. Image Registration & Stitching
+
+- [ ] Image registration
+- [ ] Feature-based alignment
+- [ ] Homography-based alignment
+- [ ] Image stitching
+- [ ] Panorama generation
+- [ ] Image blending
+- [ ] OpenCV Stitcher
+- [ ] Manual panorama pipeline
+
+---
+
+## 15. Image Restoration
+
+- [ ] Noise models
+- [ ] Image denoising
+- [ ] Inpainting
+- [ ] Motion blur concepts
+- [ ] Deblurring concepts
+
+---
+
+## 16. Image Analysis & Comparison
+
+- [ ] Image histograms
+- [ ] Image moments
+- [ ] Mean
+- [ ] Variance
+- [ ] Minimum / maximum pixel values
+- [ ] MSE
+- [ ] PSNR
+- [ ] SSIM
+- [ ] Image comparison
+
+---
+
+## 17. Utilities & Pipelines
+
+- [ ] Batch image processing
+- [ ] Folder processing
+- [ ] Automatic output directories
+- [ ] Image format conversion
+- [ ] Image metadata
+- [ ] Processing pipelines
+- [ ] Configuration support
+- [ ] Logging
+- [ ] Error handling
+- [ ] Input validation
+- [ ] Progress reporting
+
+---
+
+## 18. Command Line Interface
+
+Eventually the toolkit will provide a CLI for running image-processing operations without modifying Python code.
+
+Planned features:
+
+- [ ] Command-line image processing
+- [ ] Input/output arguments
+- [ ] Operation selection
+- [ ] Processing pipelines
+- [ ] Batch processing
+- [ ] CLI help system
+
+---
+
+# 🧪 Testing
+
+Each category will have its own test file.
+
+Current structure:
 
 ```text
-opencv-image-toolkit/
-│
-├── README.md
-├── requirements.txt
-├── main.py
-├── image_processor.py
-│
-├── examples/
-│   ├── input/
-│   │   └── test.jpg
-│   └── output/
-│
-├── tests/
-│   └── test_image_processor.py
-│
-└── .gitignore
-```
-
----
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/cosmic697/computer-vision-learning.git
-cd opencv-image-toolkit
-```
-
-Create and activate a virtual environment:
-
-### macOS / Linux
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### Windows
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-Install the dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Usage
-
-The project is currently under development.
-
-The current demo can be run with:
-
-```bash
-python3 main.py
-```
-
-The demo reads an image from:
-
-```text
-examples/input/
-```
-
-and saves the processed images to:
-
-```text
-examples/output/
-```
-
-The current demo applies several image-processing operations including:
-
-* Grayscale conversion
-* Resizing
-* Cropping
-* Rotation
-* Gaussian blur
-* Thresholding
-* Canny edge detection
-
-A command-line interface will be added in a future version.
-
----
-
-## Testing
-
-The project uses Python's built-in `unittest` framework.
-
-Run the test suite with:
-
-```bash
-python3 -m unittest tests/test_image_processor.py
-```
-
-The current test suite contains **23 tests** covering:
-
-* Normal image-processing operations
-* Invalid inputs
-* Error handling
-* Image dimensions
-* Output validation
-* Threshold values
-* Kernel size validation
-* Edge detection thresholds
-
----
-
-## Learning Goals
-
-This project is being developed as a practical introduction to computer vision.
-
-The main learning goals are:
-
-1. Understand how digital images are represented as numerical arrays.
-2. Learn how OpenCV works with images.
-3. Understand common image-processing operations.
-4. Practice working with images using Python and NumPy.
-5. Learn how individual computer vision operations can be combined into processing pipelines.
-6. Practice writing tests for image-processing functions.
-7. Develop the habit of understanding and experimenting with concepts instead of simply copying library functions.
-
----
-
-## Planned Operations
-
-### Basic Operations
-
-* [x] Read image
-* [ ] Display image
-* [x] Save image
-* [ ] Get image dimensions
-* [x] Convert to grayscale
-* [x] Resize
-* [x] Crop
-* [x] Rotate
-
-### Image Processing
-
-* [x] Gaussian blur
-* [ ] Median blur
-* [x] Thresholding
-* [ ] Adaptive thresholding
-* [ ] Image sharpening
-* [ ] Morphological operations
-
-### Edge & Feature Processing
-
-* [ ] Sobel edge detection
-* [x] Canny edge detection
-* [ ] Contour detection
-* [ ] Basic feature detection
-
-### Future Improvements
-
-* [ ] Command-line interface
-* [ ] Better error handling
-* [ ] More input validation
-* [ ] More automated tests
-* [ ] Example images and results
-* [ ] Performance improvements
-
----
-
-## What I Learned
-
-This section will be updated throughout development.
-
-Topics currently studied:
-
-* Digital image representation
-* Image dimensions and channels
-* NumPy arrays
-* OpenCV image I/O
-* Image transformations
-* Image filtering
-* Gaussian blur
-* Thresholding
-* Canny edge detection
-* Basic input validation
-* Unit testing with `unittest`
-
----
-
-## Status
-
-**In Development**
-
-This project is being built incrementally as part of my computer vision learning journey.
-
-The current focus is on understanding basic image processing, writing reusable functions, and testing them properly before moving on to more advanced computer vision techniques.
-
+tests/
+├── __init__.py
+├── test_io.py
+├── test_information.py
+├── test_transformations.py
+├── test_filtering.py
+├── test_thresholding.py
+└── test_edges.py
