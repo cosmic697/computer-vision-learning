@@ -75,13 +75,13 @@ The goal is to complete each category before moving to the next one.
 
 - [x] Gaussian blur
 - [x] Median blur
-- [ ] Average / box blur
-- [ ] Bilateral filtering
-- [ ] Custom convolution
-- [ ] Sharpening
-- [ ] Unsharp masking
-- [ ] Noise reduction
-- [ ] Salt-and-pepper noise removal
+- [x] Average / box blur
+- [x] Bilateral filtering
+- [x] Custom convolution
+- [x] Sharpening
+- [x] Unsharp masking
+- [x] Noise reduction
+- [x] Salt-and-pepper noise removal
 
 ---
 
@@ -315,11 +315,13 @@ tests/
 ├── test_thresholding.py
 └── test_edges.py
 
+---
 
 # 🚧 Current Status
 
 ### Category 1 — Image I/O & Information
 ### Category 2 — Image Transformation
+### Category 2 — Image Filteration
 
 **COMPLETED ✅**
 
@@ -329,3 +331,5 @@ All planned features for this category have been implemented and tested.
 
 ```text
 All tests passing ✅
+
+---
