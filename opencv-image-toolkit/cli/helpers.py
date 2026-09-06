@@ -1,6 +1,8 @@
 import shutil
 
-from image_processor.io import load_image, save_image
+from image_processor.io import save_image
+
+from cli import state
 
 def print_centered(text: str) -> None:
     """Print text centered in the terminal."""
@@ -16,22 +18,22 @@ def print_header(title: str) -> None:
     print()
 
 def get_image():
-    """Ask the user for an image path and load the image."""
-    path = input("Enter image path: ").strip()
-    try:
-        image = load_image(path)
-        print("\nImage loaded successfully.")
-        return image
-    except Exception as error:
-        print(f"\nFailed to load image: {error}")
+    """Return the image currently stored in application state."""
+    if state.current_image is None:
+        print("\nNo image is currently loaded.")
+        print("Please load an image first.")
         return None
+    return state.current_image
 
 def get_output_path() -> str:
     """Ask the user for an output image path."""
     return input("Enter output path: ").strip()
 
 def save_result(image) -> None:
-    """Ask for an output path and save the image."""
+    """Save an image to a user-specified output path."""
+    if image is None:
+        print("\nNo image available to save.")
+        return
     output_path = get_output_path()
     try:
         save_image(image, output_path)

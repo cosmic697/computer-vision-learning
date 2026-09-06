@@ -1,6 +1,7 @@
 from image_processor.thresholding import threshold_image
 
 from cli.helpers import get_image, save_result
+from cli import state
 
 def threshold_command():
     """Apply binary thresholding to a grayscale image."""
@@ -15,8 +16,8 @@ def threshold_command():
             threshold,
             max_val,
         )
+        state.current_image = result
         print("\nThresholding applied successfully.")
-        save_result(result)
     except ValueError:
         print("\nThreshold and maximum value must be integers.")
     except Exception as error:
