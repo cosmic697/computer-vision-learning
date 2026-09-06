@@ -6,19 +6,22 @@ This guide explains how to use the OpenCV Image Toolkit through its command-line
 
 ## Table of Contents
 
-1.  [Requirements](#1-requirements)
-2.  [Starting the Application](#2-starting-the-application)
-3.  [Main Menu](#3-main-menu)
-4.  [Image I/O](#4-image-io)
-5.  [Image Information](#5-image-information)
-6.  [Transformations](#6-transformations)
-7.  [Filtering](#7-filtering)
-8.  [Thresholding](#8-thresholding)
-9.  [Edge Detection](#9-edge-detection)
-10. [Typical Workflow](#10-typical-workflow)
-11. [Input Guidelines](#11-input-guidelines)
-12. [Common Errors](#12-common-errors)
-13. [Exiting the Application](#13-exiting-the-application)
+1. [Requirements](#1-requirements)
+2. [Starting the Application](#2-starting-the-application)
+3. [Main Menu](#3-main-menu)
+4. [Image I/O](#4-image-io)
+5. [Image Information](#5-image-information)
+6. [Transformations](#6-transformations)
+7. [Filtering](#7-filtering)
+8. [Thresholding](#8-thresholding)
+9. [Morphological Operations](#9-morphological-operations)
+10. [Edge Detection](#10-edge-detection)
+11. [Typical Workflow](#11-typical-workflow)
+12. [Input Guidelines](#12-input-guidelines)
+13. [Common Errors](#13-common-errors)
+14. [Exiting the Application](#14-exiting-the-application)
+15. [Current Feature Categories](#15-current-feature-categories)
+16. [Future Improvements](#16-future-improvements)
 
 ---
 
@@ -66,7 +69,7 @@ The application will display the main menu.
 
 # 3. Main Menu
 
-The main menu provides access to all currently implemented features:
+The main menu provides access to all currently implemented feature categories:
 
 ```text
 ==================================================
@@ -78,8 +81,9 @@ The main menu provides access to all currently implemented features:
 3. Transformations
 4. Filtering
 5. Thresholding
-6. Edge Detection
-7. Exit
+6. Morphological Operations
+7. Edge Detection
+8. Exit
 ```
 
 Select an option by entering its corresponding number.
@@ -118,18 +122,21 @@ Enter the path to the image.
 Example:
 
 ```text
-Enter image path: examples/input/image.jpg
+Enter image path: examples/input/test.jpg
 ```
 
 The application will load the image and display basic information such as its shape and data type.
 
-### Example
+Example:
 
 ```text
 Image loaded successfully.
+
 Shape: (720, 1280, 3)
 Data type: uint8
 ```
+
+The loaded image becomes the current image and can then be processed using other operations.
 
 ---
 
@@ -141,16 +148,15 @@ Select:
 2. Save Image
 ```
 
-Enter the path of the image you want to save.
+The application asks for the output path.
 
 Example:
 
 ```text
-Enter image path: examples/input/image.jpg
 Enter output path: examples/output/result.jpg
 ```
 
-The processed image will be saved at the specified location.
+The currently loaded and processed image will be saved at the specified location.
 
 ---
 
@@ -162,9 +168,7 @@ Select:
 3. Display Image
 ```
 
-Enter the image path.
-
-The image will open in an OpenCV window.
+The currently loaded image will open in an OpenCV window.
 
 Press:
 
@@ -178,7 +182,7 @@ to close the image window.
 
 # 5. Image Information
 
-The Image Information menu provides information about an image.
+The Image Information menu provides information about the currently loaded image.
 
 ```text
 1. Dimensions
@@ -291,7 +295,11 @@ Example:
 ```text
 Enter x coordinate: 100
 Enter y coordinate: 200
+```
 
+Example output:
+
+```text
 Pixel value at (100, 200): [120 85 40]
 ```
 
@@ -307,6 +315,7 @@ Displays basic image statistics:
 
 ```text
 Image Statistics:
+
 min: ...
 max: ...
 mean: ...
@@ -324,7 +333,7 @@ The statistics include:
 
 ## 5.8 Check Grayscale
 
-Checks whether the image is represented as a grayscale image.
+Checks whether the currently loaded image is represented as a grayscale image.
 
 Example:
 
@@ -336,7 +345,7 @@ Grayscale image: True
 
 ## 5.9 Check Color
 
-Checks whether the image is represented as a color image.
+Checks whether the currently loaded image is represented as a color image.
 
 Example:
 
@@ -445,6 +454,7 @@ This operation is particularly useful before operations such as:
 
 * Thresholding
 * Edge Detection
+* Morphological Processing
 
 ---
 
@@ -770,11 +780,25 @@ Enter kernel size: 5
 
 # 8. Thresholding
 
-The Thresholding menu currently provides binary thresholding.
+The Thresholding menu provides several techniques for converting or segmenting grayscale images based on pixel intensity.
 
 ```text
 1. Binary Threshold
-2. Back
+2. Binary Inverse Threshold
+3. Truncation Threshold
+4. To Zero Threshold
+5. Adaptive Threshold
+6. Otsu Threshold
+7. Back
+```
+
+Most thresholding operations require a grayscale image.
+
+If the input image is a color image, convert it to grayscale first:
+
+```text
+Transformations
+→ Grayscale
 ```
 
 ---
@@ -799,20 +823,334 @@ Enter maximum value (0-255): 255
 
 Pixels above the threshold are assigned the maximum value, while the remaining pixels are assigned zero.
 
-### Important
+---
 
-Thresholding requires a **grayscale image**.
+## 8.2 Binary Inverse Threshold
 
-If the input image is a color image, convert it to grayscale first:
+Binary inverse thresholding performs the opposite operation of binary thresholding.
+
+Pixels above the threshold are assigned zero, while pixels at or below the threshold are assigned the maximum value.
+
+Example:
 
 ```text
-Transformations
+Enter threshold (0-255): 127
+Enter maximum value (0-255): 255
+```
+
+This can be useful when the foreground and background need to be inverted.
+
+---
+
+## 8.3 Truncation Threshold
+
+Truncation thresholding limits pixel values above the specified threshold.
+
+Pixels greater than the threshold are replaced by the threshold value.
+
+Example:
+
+```text
+Enter threshold (0-255): 127
+```
+
+This preserves lower intensity values while limiting higher intensity values.
+
+---
+
+## 8.4 To Zero Threshold
+
+To Zero thresholding sets pixels below the threshold to zero.
+
+Pixels greater than or equal to the threshold retain their original values.
+
+Example:
+
+```text
+Enter threshold (0-255): 127
+```
+
+This can be useful for removing low-intensity regions while preserving brighter regions.
+
+---
+
+## 8.5 Adaptive Threshold
+
+Adaptive thresholding calculates the threshold value locally instead of using one global threshold for the entire image.
+
+The application asks for:
+
+```text
+maximum value
+block size
+constant
+```
+
+The block size must be a positive odd number greater than one.
+
+Example:
+
+```text
+Enter maximum value (0-255): 255
+Enter block size: 11
+Enter constant: 2
+```
+
+Adaptive thresholding is useful when the image contains uneven or changing illumination.
+
+---
+
+## 8.6 Otsu Threshold
+
+Otsu thresholding automatically determines a suitable global threshold from the image histogram.
+
+The application asks for:
+
+```text
+maximum value
+```
+
+Example:
+
+```text
+Enter maximum value (0-255): 255
+```
+
+Otsu thresholding is particularly useful when the image contains two dominant intensity regions.
+
+---
+
+## Important
+
+Thresholding operations require a grayscale image.
+
+Recommended workflow:
+
+```text
+Image I/O
+→ Load Image
+→ Transformations
 → Grayscale
+→ Thresholding
+```
+
+The resulting thresholded image can then be saved using:
+
+```text
+Image I/O
+→ Save Image
 ```
 
 ---
 
-# 9. Edge Detection
+# 9. Morphological Operations
+
+The Morphological Operations menu provides operations that process the shape and structure of objects in an image.
+
+```text
+1. Erosion
+2. Dilation
+3. Opening
+4. Closing
+5. Back
+```
+
+Morphological operations use a **structuring element**, also called a kernel.
+
+The application allows the user to select the structuring-element shape:
+
+```text
+1. Rectangle
+2. Ellipse
+3. Cross
+```
+
+The kernel size must be a positive odd number.
+
+Example:
+
+```text
+Enter kernel size: 3
+```
+
+---
+
+## 9.1 Erosion
+
+Erosion reduces the boundaries of foreground objects.
+
+It can be used to:
+
+* Remove small foreground regions
+* Separate connected objects
+* Reduce the size of foreground objects
+
+The application asks for:
+
+```text
+structuring element shape
+kernel size
+iterations
+```
+
+Example:
+
+```text
+Choose structuring element shape:
+1. Rectangle
+2. Ellipse
+3. Cross
+
+Choose shape: 1
+
+Enter kernel size: 3
+Enter iterations: 1
+```
+
+Increasing the number of iterations applies erosion repeatedly.
+
+---
+
+## 9.2 Dilation
+
+Dilation expands the boundaries of foreground objects.
+
+It can be used to:
+
+* Increase the size of foreground objects
+* Fill small gaps
+* Connect nearby regions
+
+The application asks for:
+
+```text
+structuring element shape
+kernel size
+iterations
+```
+
+Example:
+
+```text
+Choose structuring element shape:
+1. Rectangle
+2. Ellipse
+3. Cross
+
+Choose shape: 1
+
+Enter kernel size: 3
+Enter iterations: 1
+```
+
+---
+
+## 9.3 Opening
+
+Opening consists of erosion followed by dilation.
+
+It is useful for:
+
+* Removing small foreground noise
+* Separating objects
+* Smoothing object boundaries
+
+The application asks for:
+
+```text
+structuring element shape
+kernel size
+iterations
+```
+
+Example:
+
+```text
+Choose structuring element shape:
+1. Rectangle
+2. Ellipse
+3. Cross
+
+Choose shape: 2
+
+Enter kernel size: 5
+Enter iterations: 1
+```
+
+---
+
+## 9.4 Closing
+
+Closing consists of dilation followed by erosion.
+
+It is useful for:
+
+* Filling small gaps
+* Closing small holes
+* Connecting nearby foreground regions
+
+The application asks for:
+
+```text
+structuring element shape
+kernel size
+iterations
+```
+
+Example:
+
+```text
+Choose structuring element shape:
+1. Rectangle
+2. Ellipse
+3. Cross
+
+Choose shape: 1
+
+Enter kernel size: 3
+Enter iterations: 1
+```
+
+---
+
+## Morphological Processing Workflow
+
+A typical workflow is:
+
+```text
+Load Image
+     ↓
+Grayscale
+     ↓
+Threshold
+     ↓
+Morphological Operation
+     ↓
+Save Result
+```
+
+For example:
+
+```text
+Image I/O
+→ Load Image
+
+Transformations
+→ Grayscale
+
+Thresholding
+→ Binary Threshold
+
+Morphological Operations
+→ Opening
+
+Image I/O
+→ Save Image
+```
+
+---
+
+# 10. Edge Detection
 
 The Edge Detection menu currently provides Canny edge detection.
 
@@ -823,7 +1161,7 @@ The Edge Detection menu currently provides Canny edge detection.
 
 ---
 
-## 9.1 Canny Edge Detection
+## 10.1 Canny Edge Detection
 
 Canny edge detection identifies strong changes in image intensity and produces an edge map.
 
@@ -861,14 +1199,12 @@ Edge Detection
 
 ---
 
-# 10. Typical Workflow
+# 11. Typical Workflow
 
-A basic workflow looks like this:
+A basic workflow for the toolkit is:
 
 ```text
 Start application
-       ↓
-Image I/O
        ↓
 Load Image
        ↓
@@ -876,8 +1212,27 @@ Choose a processing operation
        ↓
 Enter required parameters
        ↓
+Continue processing if required
+       ↓
 Save Result
 ```
+
+The current image remains available while the application is running, allowing multiple operations to be performed sequentially.
+
+For example, an image can be:
+
+```text
+Load
+→ Grayscale
+→ Gaussian Blur
+→ Threshold
+→ Morphological Opening
+→ Save
+```
+
+---
+
+## Basic Blur Workflow
 
 For example, to blur an image:
 
@@ -892,7 +1247,8 @@ For example, to blur an image:
 
 4. Enter kernel size
 
-5. Save the resulting image
+5. Image I/O
+   → Save Image
 ```
 
 ---
@@ -937,13 +1293,41 @@ Save Result
 
 ---
 
-# 11. Input Guidelines
+## Morphological Workflow
+
+For morphological processing:
+
+```text
+Load Image
+     ↓
+Grayscale
+     ↓
+Threshold
+     ↓
+Morphological Operation
+     ↓
+Save Result
+```
+
+For example:
+
+```text
+Load Image
+→ Grayscale
+→ Binary Threshold
+→ Morphological Opening
+→ Save Result
+```
+
+---
+
+# 12. Input Guidelines
 
 Follow these guidelines when entering parameters.
 
-### Kernel Sizes
+## Kernel Sizes
 
-Filtering operations generally require positive odd kernel sizes.
+Filtering and morphological operations generally require positive odd kernel sizes.
 
 Valid:
 
@@ -963,7 +1347,9 @@ Invalid:
 -3
 ```
 
-### Threshold Values
+---
+
+## Threshold Values
 
 Threshold values must be between:
 
@@ -971,7 +1357,9 @@ Threshold values must be between:
 0 and 255
 ```
 
-### Maximum Values
+---
+
+## Maximum Values
 
 Maximum threshold values must also be between:
 
@@ -979,11 +1367,13 @@ Maximum threshold values must also be between:
 0 and 255
 ```
 
-### Scale Factors
+---
+
+## Scale Factors
 
 Scale factors must be positive.
 
-Example:
+Examples:
 
 ```text
 1.5
@@ -991,13 +1381,31 @@ Example:
 2.0
 ```
 
-### Coordinates
+---
+
+## Coordinates
 
 Coordinates should be entered as integer pixel positions where required.
 
+Image coordinates are zero-based.
+
 ---
 
-# 12. Common Errors
+## Morphological Iterations
+
+Morphological iterations must be positive integers.
+
+Examples:
+
+```text
+1
+2
+3
+```
+
+---
+
+# 13. Common Errors
 
 ## Image Cannot Be Loaded
 
@@ -1012,26 +1420,44 @@ Check that:
 Example:
 
 ```text
-examples/input/image.jpg
+examples/input/test.jpg
 ```
+
+---
+
+## No Image Is Loaded
+
+Processing operations require a currently loaded image.
+
+If no image is loaded, the application will display a message asking you to load an image first.
+
+Use:
+
+```text
+Image I/O
+→ Load Image
+```
+
+before performing image-processing operations.
 
 ---
 
 ## Thresholding Requires Grayscale
 
-If thresholding reports:
+Thresholding operations require a grayscale image.
+
+If thresholding reports that a grayscale image is required, convert the image first:
 
 ```text
-Thresholding requires a grayscale image.
+Transformations
+→ Grayscale
 ```
-
-convert the image to grayscale first.
 
 ---
 
 ## Invalid Kernel Size
 
-If a filtering operation requires an odd kernel size, use values such as:
+If an operation requires an odd kernel size, use values such as:
 
 ```text
 3
@@ -1059,6 +1485,30 @@ Threshold values must be within:
 
 ---
 
+## Invalid Morphological Iterations
+
+Morphological iterations must be positive integers.
+
+For example:
+
+```text
+1
+2
+3
+```
+
+are valid, while:
+
+```text
+0
+-1
+1.5
+```
+
+are invalid.
+
+---
+
 ## Image Window Does Not Close
 
 When displaying an image, focus the OpenCV image window and press:
@@ -1071,12 +1521,12 @@ to close it.
 
 ---
 
-# 13. Exiting the Application
+# 14. Exiting the Application
 
 To exit the application, return to the main menu and select:
 
 ```text
-7. Exit
+8. Exit
 ```
 
 The application will display:
@@ -1089,33 +1539,37 @@ and terminate.
 
 ---
 
-## Current Feature Categories
+# 15. Current Feature Categories
 
 The current CLI provides:
 
-| Category          | Features                                                                                                                     |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| Image I/O         | Load, Save, Display                                                                                                          |
-| Image Information | Dimensions, Width, Height, Channels, Data Type, Pixel Value, Statistics, Grayscale Check, Color Check                        |
-| Transformations   | Resize, Crop, Rotate, Grayscale, Flips, Translation, Scaling, Shearing, Affine, Perspective, Padding                         |
-| Filtering         | Gaussian, Median, Average, Bilateral, Custom Convolution, Sharpening, Unsharp Mask, Noise Reduction, Salt-and-Pepper Removal |
-| Thresholding      | Binary Threshold                                                                                                             |
-| Edge Detection    | Canny Edge Detection                                                                                                         |
+| Category | Features |
+|---|---|
+| Image I/O | Load, Save, Display |
+| Image Information | Dimensions, Width, Height, Channels, Data Type, Pixel Value, Statistics, Grayscale Check, Color Check |
+| Transformations | Resize, Crop, Rotate, Grayscale, Flips, Translation, Scaling, Shearing, Affine, Perspective, Padding |
+| Filtering | Gaussian, Median, Average, Bilateral, Custom Convolution, Sharpening, Unsharp Mask, Noise Reduction, Salt-and-Pepper Removal |
+| Thresholding | Binary, Binary Inverse, Truncation, To Zero, Adaptive, Otsu |
+| Morphological Operations | Structuring Elements, Erosion, Dilation, Opening, Closing |
+| Edge Detection | Canny Edge Detection |
 
 ---
 
-## Future Improvements
+# 16. Future Improvements
 
-The CLI architecture is under active development. Future versions may introduce:
+The CLI architecture is under active development.
 
-* Persistent image state
-* Chained image operations
-* Improved command organization
-* More thresholding techniques
-* More edge detection algorithms
+Planned improvements may include:
+
+* Additional morphological operations
+* Additional edge detection algorithms
 * Additional filtering techniques
-* Additional image-processing operations
+* Additional thresholding techniques
+* Chained image-processing workflows
+* Improved parameter validation
 * Improved error handling
 * More advanced CLI workflows
+* Better documentation and examples
+* Additional image-processing capabilities
 
 The documentation will evolve alongside the project.
