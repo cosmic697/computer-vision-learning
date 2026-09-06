@@ -7,3 +7,5 @@ __pycache__/
 
 # macOS
 .DS_Storegit status
+
+.main2.py

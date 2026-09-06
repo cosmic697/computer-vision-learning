@@ -56,6 +56,16 @@ from cli.commands.morphology_commands import (
     opening_command,
     closing_command,
 )
+from cli.commands.morphology_commands import (
+    erode_command,
+    dilate_command,
+    opening_command,
+    closing_command,
+    morphological_gradient_command,
+    top_hat_command,
+    black_hat_command,
+    hit_or_miss_command,
+)
 from cli.commands.edges_commands import (
     edge_detection_command,
 )
@@ -307,6 +317,40 @@ def morphology_menu() -> None:
         else:
             print("\nInvalid choice. Please try again.")
             pause()
+
+def morphology_menu():
+    while True:
+        print("\nMorphological Operations")
+        print("1. Erosion")
+        print("2. Dilation")
+        print("3. Opening")
+        print("4. Closing")
+        print("5. Morphological Gradient")
+        print("6. Top Hat")
+        print("7. Black Hat")
+        print("8. Hit-or-Miss")
+        print("9. Back")
+        choice = input("Enter choice: ").strip()
+        if choice == "1":
+            erode_command()
+        elif choice == "2":
+            dilate_command()
+        elif choice == "3":
+            opening_command()
+        elif choice == "4":
+            closing_command()
+        elif choice == "5":
+            morphological_gradient_command()
+        elif choice == "6":
+            top_hat_command()
+        elif choice == "7":
+            black_hat_command()
+        elif choice == "8":
+            hit_or_miss_command()
+        elif choice == "9":
+            break
+        else:
+            print("\nInvalid choice.")
 
 def edge_menu() -> None:
     """Display and handle the Edge Detection menu."""

@@ -102,10 +102,10 @@ The goal is to complete each category before moving to the next one.
 - [x] Dilation
 - [x] Opening
 - [x] Closing
-- [ ] Morphological gradient
-- [ ] Top-hat transformation
-- [ ] Black-hat transformation
-- [ ] Structuring elements
+- [x] Morphological gradient
+- [x] Top-hat transformation
+- [x] Black-hat transformation
+- [x] Structuring elements
 
 ---
 

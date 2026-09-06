@@ -67,3 +67,67 @@ def close_image(image:np.ndarray,kernel:np.ndarray,iterations:int=1)->np.ndarray
     result = cv2.morphologyEx(image,cv2.MORPH_CLOSE,kernel,iterations=iterations)
     return result
 
+def morphological_gradient(image:np.ndarray,kernel:np.ndarray,iterations:int=1)->np.ndarray:
+    '''Gradient = Dilation - Erosion'''
+    if image is None:
+        raise ValueError("Image cannot be None.")
+    if kernel is None:
+        raise ValueError("Kernel cannot be none.")
+    if not isinstance(kernel,np.ndarray):
+        raise TypeError("kernel must be a Numpy array.")
+    if not isinstance(iterations,int):
+        raise TypeError("iterations must be a integer value.")
+    if iterations<=0:
+        raise ValueError("interations must be positive.")
+    result = cv2.morphologyEx(image,cv2.MORPH_GRADIENT,kernel,iterations=iterations)
+    return result
+
+def top_hat(image: np.ndarray,kernel: np.ndarray,iterations: int = 1) -> np.ndarray:
+    '''TopHat = Original - Opening'''
+    '''Opening = Erosion → Dilation'''
+    if image is None:
+        raise ValueError("Image cannot be None.")
+    if kernel is None:
+        raise ValueError("Kernel cannot be none.")
+    if not isinstance(kernel,np.ndarray):
+        raise TypeError("kernel must be a Numpy array.")
+    if not isinstance(iterations,int):
+        raise TypeError("iterations must be a integer value.")
+    if iterations<=0:
+        raise ValueError("interations must be positive.")
+    result = cv2.morphologyEx(image,cv2.MORPH_TOPHAT,kernel,iterations=iterations)
+    return result
+
+def black_hat(image: np.ndarray,kernel: np.ndarray,iterations: int = 1) -> np.ndarray:
+    '''BlackHat = Closing - Original'''
+    '''Closing = Dilation → Erosion'''
+    if image is None:
+        raise ValueError("Image cannot be None.")
+    if kernel is None:
+        raise ValueError("Kernel cannot be none.")
+    if not isinstance(kernel,np.ndarray):
+        raise TypeError("kernel must be a Numpy array.")
+    if not isinstance(iterations,int):
+        raise TypeError("iterations must be a integer value.")
+    if iterations<=0:
+        raise ValueError("interations must be positive.")
+    result = cv2.morphologyEx(image,cv2.MORPH_BLACKHAT,kernel,iterations=iterations)
+    return result
+
+def hit_or_miss(image: np.ndarray,kernel: np.ndarray) -> np.ndarray:
+    if image is None:
+        raise ValueError("Image cannot be None.")
+    if kernel is None:
+        raise ValueError("Kernel cannot be None.")
+    if not isinstance(kernel, np.ndarray):
+        raise TypeError("Kernel must be a NumPy array.")
+    if kernel.ndim != 2:
+        raise ValueError("Kernel must be a 2D array.")
+    if not np.all(np.isin(kernel, [-1, 0, 1])):
+        raise ValueError("Kernel values must be -1, 0, or 1.")
+    if len(image.shape) != 2:
+        raise ValueError("Hit-or-miss requires a single-channel binary image.")
+    if image.dtype != np.uint8:
+        raise ValueError("Hit-or-miss requires an 8-bit binary image.")
+    result = cv2.morphologyEx( image, cv2.MORPH_HITMISS, kernel)
+    return result
