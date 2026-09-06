@@ -88,12 +88,11 @@ The goal is to complete each category before moving to the next one.
 ## 4. Thresholding
 
 - [x] Binary thresholding
-- [ ] Binary inverse thresholding
-- [ ] Truncation thresholding
-- [ ] To-zero thresholding
-- [ ] Adaptive thresholding
-- [ ] Otsu thresholding
-- [ ] Automatic threshold selection
+- [x] Binary inverse thresholding
+- [x] Truncation thresholding
+- [x] To-zero thresholding
+- [x] Adaptive thresholding
+- [x] Otsu thresholding
 
 ---
 
@@ -286,16 +285,30 @@ The goal is to complete each category before moving to the next one.
 
 ## 18. Command Line Interface
 
-Eventually the toolkit will provide a CLI for running image-processing operations without modifying Python code.
+The toolkit currently provides an interactive command-line interface
+for running image-processing operations without modifying Python code.
 
-Planned features:
+### Completed
 
-- [ ] Command-line image processing
-- [ ] Input/output arguments
-- [ ] Operation selection
+- [x] Interactive CLI menu
+- [x] Image I/O menu
+- [x] Image information menu
+- [x] Transformation menu
+- [x] Filtering menu
+- [x] Thresholding menu
+- [x] Edge detection menu
+- [x] Persistent image state
+- [x] Load image once and process multiple times
+- [x] Save processed image
+- [x] Basic CLI error handling
+
+### Planned
+
+- [ ] Command-line arguments
 - [ ] Processing pipelines
 - [ ] Batch processing
 - [ ] CLI help system
+- [ ] Configuration support
 
 ---
 
@@ -320,12 +333,22 @@ tests/
 # 🚧 Current Status
 
 ### Category 1 — Image I/O & Information
-### Category 2 — Image Transformation
-### Category 2 — Image Filteration
-
 **COMPLETED ✅**
-
 All planned features for this category have been implemented and tested.
+
+### Category 2 — Basic Image Transformations
+**COMPLETED ✅**
+All planned features for this category have been implemented and tested.
+
+### Category 3 — Image Filtering
+**COMPLETED ✅**
+All planned features for this category have been implemented and tested.
+
+### Category 4 — Thresholding
+**COMPLETED ✅**
+All planned features for this category have been implemented and tested.
+
+### Command Line Interface
 
 ### Test Status
 
