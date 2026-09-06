@@ -98,10 +98,10 @@ The goal is to complete each category before moving to the next one.
 
 ## 5. Morphological Operations
 
-- [ ] Erosion
-- [ ] Dilation
-- [ ] Opening
-- [ ] Closing
+- [x] Erosion
+- [x] Dilation
+- [x] Opening
+- [x] Closing
 - [ ] Morphological gradient
 - [ ] Top-hat transformation
 - [ ] Black-hat transformation

@@ -50,6 +50,12 @@ from cli.commands.thresholding_commands import (
     adaptive_threshold_command,
     otsu_threshold_command,
 )
+from cli.commands.morphology_commands import (
+    erode_command,
+    dilate_command,
+    opening_command,
+    closing_command,
+)
 from cli.commands.edges_commands import (
     edge_detection_command,
 )
@@ -275,6 +281,33 @@ def thresholding_menu() -> None:
             print("\nInvalid choice. Please try again.")
             pause()
 
+def morphology_menu() -> None:
+    while True:
+        print_header("Morphological Operations")
+        print("1. Erosion")
+        print("2. Dilation")
+        print("3. Opening")
+        print("4. Closing")
+        print("5. Back")
+        choice = input("\nChoose an option: ").strip()
+        if choice == "1":
+            erode_command()
+            pause()
+        elif choice == "2":
+            dilate_command()
+            pause()
+        elif choice == "3":
+            opening_command()
+            pause()
+        elif choice == "4":
+            closing_command()
+            pause()
+        elif choice == "5":
+            return
+        else:
+            print("\nInvalid choice. Please try again.")
+            pause()
+
 def edge_menu() -> None:
     """Display and handle the Edge Detection menu."""
     while True:
@@ -300,8 +333,9 @@ def main_menu() -> None:
         print("3. Transformations")
         print("4. Filtering")
         print("5. Thresholding")
-        print("6. Edge Detection")
-        print("7. Exit")
+        print("6. Morphological Operations")
+        print("7. Edge Detection")
+        print("8. Exit")
         choice = input("\nChoose an option: ").strip()
         if choice == "1":
             io_menu()
@@ -314,8 +348,10 @@ def main_menu() -> None:
         elif choice == "5":
             thresholding_menu()
         elif choice == "6":
-            edge_menu()
+            morphology_menu()
         elif choice == "7":
+            edge_menu()
+        elif choice == "8":
             print("\nGoodbye!")
             break
         else:
